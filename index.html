@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/konpa/devicon@master/devicon.min.css">
+
+    <title>Wind Farm Operation Cost Modelling</title>
+  </head>
+  <body onload="passCheck()">
+    <div id="passwordprotected" class="invisible">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#home"><span><img id="logo" src="logo.jpg"></span>Windfarm Cost Modelling</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#in">Inputs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#out">Outputs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#ref">References</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+    <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+      <h4 id="about"></h4>
+      <div id = "home page" class="container text-center ">
+        <h1 class="display-3">About the Project</h1>
+        <p>
+            The aim of this report is to conclude whether the introduction of automated robotics would be beneficial to subsea cable maintenance for wind farms in the UK, specifically to the London Array. 
+            The report will use cost modelling developed for current operations to perform “what-if” costing analysis to consider different outcomes of the Levelized Cost of Electricity (LCOE) depending on varying levels of automation of subsea vehicles for O&M of subsea cables. 
+        </p>
+      </div>
+      <hr>
+
+      <h4></h4>
+      <div class="container text-center" id="page">
+        <h1 class="display-3"><span></span>Instructions for the model</h1>
+        <p>
+           This model allows the user to change various inputs in order to explore the impact of various variables on the Levelised Cost of Electricity for an offshore windfarm. 
+           This model should be used in junction with the final report written where each scenario is fully explored with varying sensitivity analysis cases. 
+        </p>
+        <p>
+            Below are various input boxes alongside the values that are true for the chosen case study of the London Array 
+        </p>
+      </div>
+
+      <hr>
+
+      <div class="container text-center">
+        <h1 id="in" class="display-3">Inputs</h1>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Initial Cost</label>
+                    <input type="number" default="1950000000" class="form-control" id="CAPEX" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">For the London Array : £1.95 billion</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Life Span</label>
+                    <input type="number" default="25" class="form-control" id="life" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">For the London Array : 25 years</div>
+                </div>  
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Interest Rate = Discount Rate</label>
+                    <input type="number" default="0.02" class="form-control" id="IR" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">For the London Array : 2%</div>
+                </div>
+                <div class="mb-3 advs invisible">
+                    <label for="exampleInputEmail1" class="form-label">Turbine Rating</label>
+                    <input type="number" class="form-control" id="turbinecapacity" aria-describedby="emailHelp">
+                    <div  class="form-text">For the London Array : 3.6MW</div>
+                </div>
+                <div class="mb-3 advs invisible">
+                    <label for="exampleInputEmail1" class="form-label">Number of Turbines</label>
+                    <input type="number" class="form-control" id="numberofturbines" aria-describedby="emailHelp">
+                    <div class="form-text">For the London Array : 175</div>
+                </div>
+                </form>
+              </div>
+              <div class="col-sm">
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Price Per ROC</label>
+                        <input type="number" default="45" class="form-control" id="ROC" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">For the London Array : £45 /MWh</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Wholesale Price</label>
+                        <input type="number" default="34" class="form-control" id="price" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">For the London Array : £34 /MWh</div>
+                    </div>  
+                    <div class="mb-3 advs invisible">
+                      <label for="exampleInputEmail1" class="form-label">Availability</label>
+                      <input type="number" class="form-control" id="avail" aria-describedby="emailHelp">
+                      <div class="form-text">For the London Array : 99.89%</div>
+                    </div>
+                  <div class="mb-3 advs invisible" >
+                    <label for="exampleInputEmail1" class="form-label">Capacity Factor</label>
+                    <input type="number" class="form-control" id="capfactor" aria-describedby="emailHelp">
+                    <div class="form-text">For the London Array : 77.9%</div>
+                </div>
+                </form>
+              </div>
+              <div class="col-sm">
+                <form>
+                    <div class="mb-3">
+                        <p>
+                          <label for="exampleInputEmail1" class="form-label">Scenario Manager</label>
+                        </p>
+                        <select id="scenario" class="form-select form-select-lg mb-3" onchange="showChange()" aria-label=".form-select-lg example" required>
+                        <option value="Divers">One: Divers</option>
+                        <option value="ROVs">Two: ROV</option>
+                        <option value="AUVs">Three: AUV</option>
+                  </select>
+                    </div>  
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Number of <span id="scenario_display"></span></label>
+                        <input type="number" default="23" class="form-control" id="diver" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">For the London Array : <span id="scenario_recommend"></span></div>
+                    </div> 
+                    <div class="form-check">
+                      <input class="form-check-input" onchange="showAdvanced()" type="checkbox" value="" id="advancedsettings">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Advanced Settings
+                      </label>
+                    </div>
+                  <button type="button" class="btn btn-primary" onclick="run()">Run the results</button> 
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>
+      <hr>
+
+      <div class="container text-center">
+        <h1 id="out" class="display-3">Outputs</h1>
+            <div class="container">
+                <div class="row">
+                  <div class="col-md">
+                    <p>
+                        \[OPEX_n = {{{WP_{min}+WP_{max}}} \over 2} \]
+                    </p>
+                    <p>
+                        <h1><span id="opexout" class="badge bg-light text-dark"></span></h1>
+                    </p>
+                  </div>
+                  <div class="col-md">
+                      <p>
+                          \[E_{gen} =n_t * C_{np} * α * F_{cap} * t \]
+                      </p>
+                      <p>
+                        <h1><span id="genout" class="badge bg-light text-dark"></span></h1>
+                      </p>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                    <p>
+                        \[EX=\displaystyle \sum_{i=1}^n {{CAPEX_i+OPEX_i} \over {(1+β)^i}}\]
+                    </p>
+                    <p>
+                        <h1><span id="exout" class="badge bg-light text-dark"></span></h1>
+                    </p>
+                    </div>
+                    <div class="col-md">
+                    <p>
+                        \[LCOE = {EX \over E_{gen,i}} \]
+                    </p>
+                    <p>
+                        <h1><span id="lcoeout" class="badge bg-light text-dark"></span></h1>
+                    </p>
+                    </div>
+                  </div>
+              </div>
+
+              <canvas id="pie-chart-opex" width="800" height="450"></canvas>
+              <canvas id="pie-chart-lcoe" width="800" height="450"></canvas>
+              
+      </div>
+
+      <hr>
+
+      <div class="container text-center">
+        <h1 id="ref" class="display-3">References</h1>
+        <p>
+
+        </p>
+        <p>
+
+        </p>
+      </div>
+    </div>
+    
+      
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

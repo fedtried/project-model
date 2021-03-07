@@ -1,0 +1,36 @@
+body{
+    background-color: #bdb2ff;
+}
+
+html {
+	scroll-behavior: smooth;
+  }
+
+#home{
+	padding-top: 100px;
+}
+
+#logo {
+    object-fit:scale-down;
+    margin-top: 0%;
+    width: 100px;
+    height: 50px;
+}
+
+hr{
+	border:none;
+  	height: 20px;
+ 	width: 70%;
+	height: 50px;
+	border-bottom: 1px solid steelblue;
+	box-shadow: 0 20px 20px -20px #333;
+  	margin: 50px auto 10px; 
+}
+
+.advs.invisible{
+	height: 0px;
+}
+
+.invisible{
+	height: 0px;
+}
