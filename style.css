@@ -34,3 +34,8 @@ hr{
 .invisible{
 	height: 0px;
 }
+
+.form-text{
+	font-size: 80%;
+	color: dimgrey;
+}
