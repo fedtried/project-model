@@ -4,8 +4,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
@@ -14,7 +12,7 @@
 
     <title>Wind Farm Operation Cost Modelling</title>
   </head>
-  <body onload="passCheck()">
+  <body onload="passCheck()"> <!-- Protecting the webpage on entry -->
     <div id="passwordprotected" class="invisible">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -46,57 +44,79 @@
     <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
       <h4 id="about"></h4>
       <div id = "home page" class="container text-center ">
-        <h1 class="display-3">About the Project</h1>
+        <h1 class="display-3">About the Project</h1> <!-- Brief introduction to the project as a whole -->
         <p>
             The aim of this report is to conclude whether the introduction of automated robotics would be beneficial to subsea cable maintenance for wind farms in the UK, specifically to the London Array. 
             The report will use cost modelling developed for current operations to perform “what-if” costing analysis to consider different outcomes of the Levelized Cost of Electricity (LCOE) depending on varying levels of automation of subsea vehicles for O&M of subsea cables. 
+        </p>
+        <p>
+          Three scenarios have been explored: Divers, ROV and AUV. The difference between ROV and AUV has been explored throughout the literature review in the final report. AUV technology is still progressing, and as a result has high initial costs. However, 
+          it provides increased flexibility compared to the ROV. For more information, see the literature review.
+        </p>
+        <p>
+          The assumptions used for this model:
+          <p>
+            1. Each year the capital repayment is kept the same plus interest accrued
+          </p>
+          <p>
+              2. Windfarm remediation costs and residual value is 0
+          </p>     
+          <p>
+            3. Costs are fixed throughout the lifetime of the offshore wind farm.
+          </p>
         </p>
       </div>
       <hr>
 
       <h4></h4>
       <div class="container text-center" id="page">
-        <h1 class="display-3"><span></span>Instructions for the model</h1>
+        <h1 class="display-3"><span></span>Instructions for the model</h1> <!-- Instructions to ensure that the user understand both what is meant to be inputted and what is outputted. -->
         <p>
            This model allows the user to change various inputs in order to explore the impact of various variables on the Levelised Cost of Electricity for an offshore windfarm. 
            This model should be used in junction with the final report written where each scenario is fully explored with varying sensitivity analysis cases. 
         </p>
         <p>
-            Below are various input boxes alongside the values that are true for the chosen case study of the London Array 
+            Below are various input boxes alongside the values that are true for the chosen case study of the London Array. The values in the input boxes can be changed to explore it's impact on the LCOE. 
+            Additionally, by allowing advanced settings the characteristics of the Offshore Windfarm Array can be edited. Where advanced settings is not selected, the model will use the default values. 
+        </p>
+        <p>
+            The ouputs from the model show the intermediate calculations performed behind the scenes followed by 2 pie charts. The results have been rounded to 2 significant figures as the input values 
+            cannot provide improved accuracy. The first pie chart explores the breakdown of OPEX costs. As this model explores using robotics for subsea maintenance, BOP is the variable figure. The second pie chart
+            shows the breakdown of the lifetime costs. In line with literature, the O&M costs account for 25-30% of the total lifetime costs.
         </p>
       </div>
 
       <hr>
 
       <div class="container text-center">
-        <h1 id="in" class="display-3">Inputs</h1>
+        <h1 id="in" class="display-3">Inputs</h1> <!-- Input variables that can be altered. -->
         <div class="container">
             <div class="row">
               <div class="col-sm">
                 <form>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Initial Cost</label>
-                    <input type="number" default="1950000000" class="form-control" id="CAPEX" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">For the London Array : £1.95 billion</div>
+                    <label for="CAPEX" class="form-label">Initial Cost</label>
+                    <input type="number" default="1950000000" class="form-control" id="CAPEX" aria-describedby="CAPEX">
+                    <div id="casestudyrecommend" class="form-text">For the London Array : £1.95 billion</div>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Life Span</label>
+                    <label for="Lifespan" class="form-label">Life Span</label>
                     <input type="number" default="25" class="form-control" id="life" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">For the London Array : 25 years</div>
+                    <div id="casestudyrecommend" class="form-text">For the London Array : 25 years</div>
                 </div>  
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Interest Rate = Discount Rate</label>
-                    <input type="number" default="0.02" class="form-control" id="IR" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">For the London Array : 2%</div>
+                    <label for="interestrate" class="form-label">Interest Rate = Discount Rate</label>
+                    <input type="number" default="0.02" class="form-control" id="IR" aria-describedby="interestrate">
+                    <div id="casestudyrecommend" class="form-text">For the London Array : 2%</div>
                 </div>
                 <div class="mb-3 advs invisible">
-                    <label for="exampleInputEmail1" class="form-label">Turbine Rating</label>
-                    <input type="number" class="form-control" id="turbinecapacity" aria-describedby="emailHelp">
+                    <label for="turbinerating" class="form-label">Turbine Rating</label><!-- Advanced setting. -->
+                    <input type="number" class="form-control" id="turbinecapacity" aria-describedby="turbinerating">
                     <div  class="form-text">For the London Array : 3.6MW</div>
                 </div>
                 <div class="mb-3 advs invisible">
-                    <label for="exampleInputEmail1" class="form-label">Number of Turbines</label>
-                    <input type="number" class="form-control" id="numberofturbines" aria-describedby="emailHelp">
+                    <label for="numturbines" class="form-label">Number of Turbines</label><!-- Advanced setting. -->
+                    <input type="number" class="form-control" id="numberofturbines" aria-describedby="numturbines">
                     <div class="form-text">For the London Array : 175</div>
                 </div>
                 </form>
@@ -104,23 +124,23 @@
               <div class="col-sm">
                 <form>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Price Per ROC</label>
-                        <input type="number" default="45" class="form-control" id="ROC" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">For the London Array : £45 /MWh</div>
+                        <label for="priceperroc" class="form-label">Price Per ROC</label>
+                        <input type="number" default="45" class="form-control" id="ROC" aria-describedby="pricePerRoc">
+                        <div id="casestudyrecommend" class="form-text">For the London Array : £45 /MWh</div>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Wholesale Price</label>
-                        <input type="number" default="34" class="form-control" id="price" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">For the London Array : £34 /MWh</div>
+                        <label for="wholesaleprice" class="form-label">Wholesale Price</label>
+                        <input type="number" default="34" class="form-control" id="price" aria-describedby="wholesaleprice">
+                        <div id="casestudyrecommend" class="form-text">For the London Array : £34 /MWh</div>
                     </div>  
                     <div class="mb-3 advs invisible">
-                      <label for="exampleInputEmail1" class="form-label">Availability</label>
-                      <input type="number" class="form-control" id="avail" aria-describedby="emailHelp">
+                      <label for="availability" class="form-label">Availability</label><!-- Advanced setting. -->
+                      <input type="number" class="form-control" id="avail" aria-describedby="availability">
                       <div class="form-text">For the London Array : 99.89%</div>
                     </div>
                   <div class="mb-3 advs invisible" >
-                    <label for="exampleInputEmail1" class="form-label">Capacity Factor</label>
-                    <input type="number" class="form-control" id="capfactor" aria-describedby="emailHelp">
+                    <label for="capacityfactor" class="form-label">Capacity Factor</label><!-- Advanced setting. -->
+                    <input type="number" class="form-control" id="capfactor" aria-describedby="capacityfactor">
                     <div class="form-text">For the London Array : 77.9%</div>
                 </div>
                 </form>
@@ -129,7 +149,7 @@
                 <form>
                     <div class="mb-3">
                         <p>
-                          <label for="exampleInputEmail1" class="form-label">Scenario Manager</label>
+                          <label for="scenariomanager" class="form-label">Scenario Manager</label>
                         </p>
                         <select id="scenario" class="form-select form-select-lg mb-3" onchange="showChange()" aria-label=".form-select-lg example" required>
                         <option value="Divers">One: Divers</option>
@@ -138,9 +158,9 @@
                   </select>
                     </div>  
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Number of <span id="scenario_display"></span></label>
-                        <input type="number" default="23" class="form-control" id="diver" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">For the London Array : <span id="scenario_recommend"></span></div>
+                        <label for="scenarionumbers" class="form-label">Number of <span id="scenario_display"></span></label>
+                        <input type="number" default="23" class="form-control" id="diver" aria-describedby="scenariopick">
+                        <div id="casestudyrecommend" class="form-text">For the London Array : <span id="scenario_recommend"></span></div>
                     </div> 
                     <div class="form-check">
                       <input class="form-check-input" onchange="showAdvanced()" type="checkbox" value="" id="advancedsettings">
@@ -148,7 +168,7 @@
                         Advanced Settings
                       </label>
                     </div>
-                  <button type="button" class="btn btn-primary" onclick="run()">Run the results</button> 
+                  <button type="button" class="btn btn-primary" onclick="run()">Run the results</button> <!-- Calls the run function on the button click -->
                 </form>
               </div>
             </div>
@@ -197,8 +217,8 @@
                   </div>
               </div>
 
-              <canvas id="pie-chart-opex" width="800" height="450"></canvas>
-              <canvas id="pie-chart-lcoe" width="800" height="450"></canvas>
+              <canvas id="pie-chart-opex"></canvas>
+              <canvas id="pie-chart-lcoe"></canvas>
               
       </div>
 
@@ -207,10 +227,18 @@
       <div class="container text-center">
         <h1 id="ref" class="display-3">References</h1>
         <p>
-
-        </p>
-        <p>
-
+          [1]L. Array, “London Array: the world’s largest operational offshore wind farm,” Engineering & Technology Reference, Jan. 2015, doi: 10.1049/etr.2014.0049. <br>
+          [2]“Planit : Job Profiles : Diver Offshore and Energy,” www.planitplus.net. https://www.planitplus.net/JobProfiles/View/522/53#:~:text=On%20average%2C%20they%20work%20around (accessed Apr. 06, 2021).<br>
+          [3]Blue Transmission, “Blue Transmission London Array Limited Regulatory accounts 2019/20,” Mar. 2020. [Online]. Available: .<br>
+          [4]“A Guide to UK Offshore Wind Operations and Maintenance,.” [Online]. Available: http://questfwe.com/wp-content/uploads/2018/02/Wind-farm-operations-and-maintenance-GL-Garrad-Hassan.pdf.<br>
+          [5]“Published on behalf of The Crown Estate and the Offshore Renewable Energy Catapult Guide to an offshore wind farm,” 2019. [Online]. Available: https://www.thecrownestate.co.uk/media/2860/guide-to-offshore-wind-farm-2019.pdf.<br>
+          [6]“Sources of income for wind turbines - Renewables First,” Renewables First - The Hydro and Wind Company. https://www.renewablesfirst.co.uk/windpower/windpower-learning-centre/sources-of-income-for-wind-turbines/.<br>
+          [7]“System Prices Analysis Report: Reporting on February 2021 - Elexon BSC,” www.elexon.co.uk. https://www.elexon.co.uk/data/key-data-reports/system-prices-analysis-report/ (accessed Apr. 06, 2021).<br>
+          [8]“London Array Offshore Wind Farm, Outer Thames Estuary, UK.” https://www.nsenergybusiness.com/projects/london-array-offshore-wind-farm/ (accessed Apr. 06, 2021).<br>
+          [9]RWE, “London Array offshore wind farm,” uk-ireland.rwe.com. https://www.group.rwe/en/our-portfolio/our-sites/london-array-offshore-wind-farm#:~:text=The%20London%20Array%20offshore%20wind (accessed Apr. 06, 2021).<br>
+          [10]A. Ioannou, A. Angus, and F. Brennan, “Parametric CAPEX, OPEX, and LCOE expressions for offshore wind farms based on global deployment parameters,” Energy Sources, Part B: Economics, Planning, and Policy, vol. 13, no. 5, pp. 281–290, May 2018, doi: 10.1080/15567249.2018.1461150.<br>
+          [11]“UK Offshore Wind: Opportunity, Costs & Financing,” 2011. Accessed: Apr. 06, 2021. [Online]. Available: https://www.db.com/cr/de/docs/UK_Offshore_Wind_Opportunity-112111.pdf.<br>
+          [12]“Offshore Transmission: Cost Assessment for the London Array transmission assets Overview,.” Accessed: Apr. 06, 2021. [Online]. Available: https://www.ofgem.gov.uk/ofgem-publications/75426/careportlondon-arraysection-8a-version.pdf.<br>
         </p>
       </div>
     </div>
@@ -220,6 +248,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
