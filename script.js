@@ -143,34 +143,53 @@ function revenue(){
 
 function run(){
     var rev = revenue();
-    var capex = CAPEX();
-    var opex = OPEX();
+    var capex = Number(CAPEX().toPrecision(2));
+    var opex = Number(OPEX().toPrecision(2));
     var ex = (capex+(opex*25))/denominator;
+    ex = Number(ex.toPrecision(2));
     var lcoe = ex/(energyGenerated*25);
+    lcoe = Number(lcoe.toPrecision(2));
+    energyGenerated = Number(energyGenerated.toPrecision(2));
     document.getElementById("opexout").innerHTML = "£" + opex;
     document.getElementById("genout").innerHTML = energyGenerated + "MWh";
     document.getElementById("exout").innerHTML = ex;
-    document.getElementById("lcoeout").innerHTML = "£" + lcoe;
+    document.getElementById("lcoeout").innerHTML = "£" + lcoe + "/MWh";
 
-    new Chart(document.getElementById("pie-chart-opex"), {
+    var ctxopex = document.getElementById("pie-chart-opex").getContext('2d');
+    var myChart = new Chart(ctxopex, {
         type: 'pie',
         data: {
-          labels: ["Training", "Onshore Logistics", "Offshore Logistics", "Turbine Maintenance", "OFTO", "BOP", "Admin"],
-          datasets: [{
-            label: "OPEX costs",
-            backgroundColor: ["#5b3758", "#c65b7c","#f9627d","#f9ada0","#83b692", "#90be6d", "#9cafb7"],
-            data: [472500,582500,5733900,11970000,3311000,opex,1197000]
-          }]
-        },
-        options: {
-          title: {
-            display: true,
-            text: 'Breakdown of OPEX'
-          }
-        }
-    });
+            labels: ["Training", "Onshore Logistics", "Offshore Logistics", "Turbine Maintenance", "OFTO", "BOP", "Admin"],
+            datasets: [{
+              label: "OPEX costs",
+              backgroundColor: ["#5b3758", "#c65b7c","#f9627d","#f9ada0","#83b692", "#90be6d", "#9cafb7"],
+              data: [472500,582500,5733900,11970000,3311000,opex,1197000]
+            }]
+          },
+      options: {
+        tooltips: {
+      enabled: false
+ },
+          plugins: {
+         datalabels: {
+             formatter: (value, ctxopex) => {
+             
+               let sum = 0;
+               let dataArr = ctxopex.chart.data.datasets[0].data;
+               dataArr.map(data => {
+                   sum += data;
+               });
+               let percentage = (value*100 / sum).toFixed(2)+"%";
+               return percentage;
+             },
+             color: '#fff',
+                  }
+     }
+ }
+    }); 
 
-    new Chart(document.getElementById("pie-chart-lcoe"), {
+    var ctxlcoe = document.getElementById("pie-chart-lcoe").getContext('2d');
+    var myChart = new Chart(ctxlcoe, {
         type: 'pie',
         data: {
           labels: ["OPEX", "CAPEX"],
@@ -181,10 +200,25 @@ function run(){
           }]
         },
         options: {
-          title: {
-            display: true,
-            text: 'Breakdown of Total Costs'
-          }
-        }
-    });
+            tooltips: {
+          enabled: false
+     },
+              plugins: {
+             datalabels: {
+                 formatter: (value, ctxlcoe) => {
+                 
+                   let sum = 0;
+                   let dataArr = ctxlcoe.chart.data.datasets[0].data;
+                   dataArr.map(data => {
+                       sum += data;
+                   });
+                   let percentage = (value*100 / sum).toFixed(2)+"%";
+                   return percentage;
+                 },
+                 color: '#fff',
+                      }
+         }
+     }
+    }); 
+
 }
